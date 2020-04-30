@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react'
+import styled from '@emotion/styled'
 
 import Header from './Header'
 import Nav from './Nav'
@@ -20,12 +21,17 @@ function LayoutDefault({ children }) {
   }, [])
 
   return (
-    <div className="layout-default">
+    <LayoutContent data-class="layout-default">
       <Header />
       <Nav />
       {children}
-    </div>
+    </LayoutContent>
   )
 }
 
 export default LayoutDefault
+
+const LayoutContent = styled.div`
+  min-height: 100vh;
+  padding: 16px;
+`

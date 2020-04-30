@@ -36,9 +36,11 @@ function generatePageFiles() {
     const Component = route.component
     const result = correctStyle(
       ReactDOMServer.renderToString(
-        <StaticRouter>
-          <Component />
-        </StaticRouter>
+        <div>
+          <StaticRouter>
+            <Component />
+          </StaticRouter>
+        </div>
       )
     )
 
@@ -123,10 +125,11 @@ function createCorrectStyle() {
       const dom = new JSDOM(source)
       const { body } = dom.window.document
 
-      const emotionStyle = body.querySelectorAll('[data-emotion-css]')
+      const emotionStyles = body.querySelectorAll('[data-emotion-css]')
 
-      for (let i = 0, len = emotionStyle.length; i < len; i++) {
-        const styleTag = emotionStyle[i]
+      for (let i = 0, len = emotionStyles.length; i < len; i++) {
+        const styleTag = emotionStyles[i]
+
         const selector = `css-${styleTag.getAttribute('data-emotion-css')}`
         const target = body.querySelector(`.${selector}`)
         const className = target.getAttribute('data-class')
@@ -141,7 +144,7 @@ function createCorrectStyle() {
         correctedStyle.push(styleSource)
       }
 
-      return body.innerHTML
+      return body.querySelector('[data-reactroot]').innerHTML
     },
     getCorrectedStyle() {
       return cssbeautify(correctedStyle.join('\n').trim(), {

@@ -28,16 +28,30 @@ function TestPage() {
       </ul>
 
       <Button id="clickMe">Click Me!</Button>
-      <div id="theBox" />
+      <MoveBox data-class="move-box" id="moveBox" />
 
-      <TestBox1 data-class="testBox1" />
-      <TestBox2 data-class="testBox2" />
-      <TestBox3 data-class="testBox3" />
+      <TestBox1 data-class="test-box1" />
+      <TestBox2 data-class="test-box2" />
+      <TestBox3 data-class="test-box3" />
     </LayoutDefault>
   )
 }
 
 export default TestPage
+
+const MoveBox = styled.div`
+  width: 100px;
+  height: 100px;
+  margin-top: 16px;
+  background-color: pink;
+  border-radius: 4px;
+  transform: translateX(0);
+  transition: 0.2s;
+
+  &.move {
+    transform: translateX(300%);
+  }
+`
 
 const TestBox1 = styled.div`
   width: 100px;
