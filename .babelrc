@@ -12,7 +12,8 @@
           "@config": "./src/config",
           "@layouts": "./src/layouts",
           "@pages": "./src/pages",
-          "@styles": "./src/styles"
+          "@styles": "./src/styles",
+          "@variables": "./src/variables"
         }
       }
     ]

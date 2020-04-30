@@ -27,6 +27,7 @@ function TestPage() {
       </ul>
 
       <Button id="clickMe">Click Me!</Button>
+      <div id="theBox" className="the-box" />
     </LayoutDefault>
   )
 }

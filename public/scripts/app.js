@@ -1,5 +1,5 @@
 (function($) {
   $('#clickMe').on('click', function() {
-    alert('Hello!')
+    $('#theBox').toggleClass('move')
   })
 })(window.jQuery)
