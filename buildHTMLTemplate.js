@@ -2,18 +2,23 @@ import fs from 'fs'
 import React from 'react'
 import ReactDOMServer from 'react-dom/server'
 import { StaticRouter } from 'react-router'
+import { renderStylesToString } from 'emotion-server'
 import sass from 'node-sass'
-import pretty from 'pretty'
+import HTMLPretty from 'pretty'
+import cssbeautify from 'cssbeautify'
 import { ncp } from 'ncp'
+import { JSDOM } from 'jsdom'
 
 import router from '@config/router'
 
 const publicDir = 'public'
 const buildDir = 'buildTemplate'
 
+const { correctStyle, getCorrectedStyle } = createCorrectStyle()
+
 prepareBuildDirectory()
-createStyleFromSCSS()
 generatePageFiles()
+createStyleFromSCSS()
 copyAssets()
 
 function prepareBuildDirectory() {
@@ -29,10 +34,12 @@ function generatePageFiles() {
 
   router.forEach(route => {
     const Component = route.component
-    const result = ReactDOMServer.renderToStaticMarkup(
-      <StaticRouter>
-        <Component />
-      </StaticRouter>
+    const result = correctStyle(
+      ReactDOMServer.renderToString(
+        <StaticRouter>
+          <Component />
+        </StaticRouter>
+      )
     )
 
     const fileName = `${route.key}.html`
@@ -57,7 +64,7 @@ function generatePageFiles() {
       })
     }
 
-    fs.writeFileSync(`${buildDir}/${fileName}`, pretty(content))
+    fs.writeFileSync(`${buildDir}/${fileName}`, HTMLPretty(content))
   })
 }
 
@@ -70,7 +77,10 @@ function createStyleFromSCSS() {
   })
 
   fs.mkdirSync(buildAssetsDir)
-  fs.writeFileSync(`${buildAssetsDir}/main.css`, result.css)
+
+  const css = `${result.css}\n${getCorrectedStyle()}`
+
+  fs.writeFileSync(`${buildAssetsDir}/main.css`, css)
 }
 
 function copyAssets() {
@@ -99,5 +109,44 @@ function removeDir(path) {
     }
   } else {
     console.log('Directory path not found.')
+  }
+}
+
+function createCorrectStyle() {
+  const correctedStyle = []
+
+  return {
+    correctStyle(htmlString) {
+      const source = renderStylesToString(htmlString)
+      // console.log(HTMLPretty(source))
+
+      const dom = new JSDOM(source)
+      const { body } = dom.window.document
+
+      const emotionStyle = body.querySelectorAll('[data-emotion-css]')
+
+      for (let i = 0, len = emotionStyle.length; i < len; i++) {
+        const styleTag = emotionStyle[i]
+        const selector = `css-${styleTag.getAttribute('data-emotion-css')}`
+        const target = body.querySelector(`.${selector}`)
+        const className = target.getAttribute('data-class')
+
+        const pattern = new RegExp(selector, 'g')
+        const styleSource = styleTag.innerHTML.replace(pattern, className)
+
+        styleTag.parentNode.removeChild(styleTag)
+        target.removeAttribute('data-class')
+        target.setAttribute('class', className)
+
+        correctedStyle.push(styleSource)
+      }
+
+      return body.innerHTML
+    },
+    getCorrectedStyle() {
+      return cssbeautify(correctedStyle.join('\n').trim(), {
+        indent: '  ',
+      })
+    },
   }
 }

@@ -1,4 +1,5 @@
 import React from 'react'
+import styled from '@emotion/styled'
 
 import LayoutDefault from '@layouts/LayoutDefault'
 
@@ -27,9 +28,50 @@ function TestPage() {
       </ul>
 
       <Button id="clickMe">Click Me!</Button>
-      <div id="theBox" className="the-box" />
+      <div id="theBox" />
+
+      <TestBox1 data-class="testBox1" />
+      <TestBox2 data-class="testBox2" />
+      <TestBox3 data-class="testBox3" />
     </LayoutDefault>
   )
 }
 
 export default TestPage
+
+const TestBox1 = styled.div`
+  width: 100px;
+  height: 100px;
+  margin-top: 16px;
+  background-color: red;
+  border-radius: 50%;
+  transition: 0.2s;
+
+  &:hover {
+    opacity: 0.6;
+  }
+`
+
+const TestBox2 = styled.div`
+  width: 100px;
+  height: 100px;
+  margin-top: 16px;
+  background-color: pink;
+  border-radius: 50%;
+
+  &:hover {
+    opacity: 0.6;
+  }
+`
+
+const TestBox3 = styled.div`
+  width: 100px;
+  height: 100px;
+  margin-top: 16px;
+  background-color: lightblue;
+  border-radius: 50%;
+
+  &:hover {
+    opacity: 0.6;
+  }
+`

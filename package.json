@@ -10,6 +10,8 @@
     "eject": "react-app-rewired eject"
   },
   "dependencies": {
+    "@emotion/core": "^10.0.28",
+    "@emotion/styled": "^10.0.27",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
@@ -23,7 +25,8 @@
     "react-app-rewired": "^2.1.5",
     "react-dom": "^16.13.1",
     "react-router-dom": "^5.1.2",
-    "react-scripts": "3.4.1"
+    "react-scripts": "3.4.1",
+    "styled-components": "^5.1.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.8.4",
@@ -32,6 +35,10 @@
     "@babel/preset-env": "^7.9.6",
     "@babel/preset-react": "^7.9.4",
     "babel-plugin-module-resolver": "^4.0.0",
+    "cssbeautify": "^0.3.1",
+    "emotion": "^10.0.27",
+    "emotion-server": "^10.0.27",
+    "jsdom": "^16.2.2",
     "ncp": "^2.0.0",
     "pretty": "^2.0.0",
     "react-router": "^5.1.2"
@@ -44,7 +51,8 @@
         "never"
       ],
       "comma-dangle": [
-        "error", {
+        "error",
+        {
           "arrays": "always-multiline",
           "objects": "always-multiline",
           "imports": "always-multiline",
