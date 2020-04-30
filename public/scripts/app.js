@@ -1,4 +1,4 @@
-(function ($) {
+(function($) {
   $('#clickMe').on('click', function() {
     alert('Hello!')
   })
