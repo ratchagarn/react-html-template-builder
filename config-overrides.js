@@ -10,6 +10,7 @@ module.exports = override(
     '@layouts': path.resolve(__dirname, 'src/layouts'),
     '@pages': path.resolve(__dirname, 'src/pages'),
     '@styles': path.resolve(__dirname, 'src/styles'),
+    '@variables': path.resolve(__dirname, 'src/variables'),
   }),
   addWebpackPlugin(new CleanWebpackPlugin()),
 )

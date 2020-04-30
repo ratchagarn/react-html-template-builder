@@ -4,10 +4,12 @@ import LayoutDefault from '@layouts/LayoutDefault'
 
 import Button from '@components/Button'
 
+import pageData from '@variables/pageData'
+
 function TestPage() {
   return (
     <LayoutDefault>
-      <h3>Test Page</h3>
+      <h2>{pageData.test.title}</h2>
       <p>
         Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
         tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
@@ -17,6 +19,13 @@ function TestPage() {
         occaecat cupidatat non proident, sunt in culpa qui officia deserunt
         mollit anim id est laborum.
       </p>
+
+      <ul>
+        {pageData.test.animals.map((animal) => (
+          <li key={animal}>{animal}</li>
+        ))}
+      </ul>
+
       <Button id="clickMe">Click Me!</Button>
     </LayoutDefault>
   )

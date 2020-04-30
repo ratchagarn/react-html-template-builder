@@ -2,10 +2,12 @@ import React from 'react'
 
 import LayoutDefault from '@layouts/LayoutDefault'
 
+import pageData from '@variables/pageData'
+
 function IndexPage() {
   return (
     <LayoutDefault>
-      <h3>Index Page</h3>
+      <h2>{pageData.index.title}</h2>
     </LayoutDefault>
   )
 }
