@@ -6,7 +6,9 @@ const path = require('path')
 module.exports = override(
   addWebpackAlias({
     '@components': path.resolve(__dirname, 'src/components'),
-    '@variables': path.resolve(__dirname, 'src/variables'),
+    '@layouts': path.resolve(__dirname, 'src/layouts'),
+    '@pages': path.resolve(__dirname, 'src/pages'),
+    '@styles': path.resolve(__dirname, 'src/styles'),
   }),
   addWebpackPlugin(new CleanWebpackPlugin()),
 )
