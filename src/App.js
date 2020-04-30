@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import {
   BrowserRouter as Router,
   Switch,
@@ -9,13 +9,6 @@ import {
 import router from '@config/router'
 
 function App() {
-  useEffect(() => {
-    const script = document.createElement('script')
-    script.src = 'app.js'
-
-    document.body.appendChild(script)
-  }, [])
-
   return (
     <Router>
       <Switch>

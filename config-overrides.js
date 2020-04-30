@@ -12,5 +12,5 @@ module.exports = override(
     '@styles': path.resolve(__dirname, 'src/styles'),
     '@variables': path.resolve(__dirname, 'src/variables'),
   }),
-  addWebpackPlugin(new CleanWebpackPlugin()),
+  addWebpackPlugin(new CleanWebpackPlugin())
 )
