@@ -1,9 +1,19 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { HashRouter as Router, Switch, Route } from 'react-router-dom'
 
-import router from '@pages/router'
+import router from '@config/router'
+import scriptList from '@config/scriptList'
 
 function App() {
+  useEffect(() => {
+    scriptList.forEach((src) => {
+      const s = document.createElement('script')
+      s.src = src
+
+      document.body.appendChild(s)
+    })
+  }, [])
+
   return (
     <Router>
       <Switch>

@@ -2,6 +2,8 @@ import React from 'react'
 
 import LayoutDefault from '@layouts/LayoutDefault'
 
+import Button from '@components/Button'
+
 function TestPage() {
   return (
     <LayoutDefault>
@@ -15,6 +17,7 @@ function TestPage() {
         occaecat cupidatat non proident, sunt in culpa qui officia deserunt
         mollit anim id est laborum.
       </p>
+      <Button id="clickMe">Click Me!</Button>
     </LayoutDefault>
   )
 }

@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-import router from '@pages/router'
+import router from '@config/router'
 
 function Nav() {
   return (

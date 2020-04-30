@@ -1,5 +1,5 @@
-import IndexPage from './IndexPage'
-import TestPage from './TestPage'
+import IndexPage from '@pages/IndexPage'
+import TestPage from '@pages/TestPage'
 
 export default [
   {
