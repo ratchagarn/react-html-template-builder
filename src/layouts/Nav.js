@@ -1,6 +1,5 @@
 import React from 'react'
-
-import Link from '@components/Link'
+import { Link } from 'react-router-dom'
 
 import router from '@config/router'
 

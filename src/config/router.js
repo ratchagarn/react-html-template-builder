@@ -5,13 +5,13 @@ export default [
   {
     key: 'index',
     label: 'Index',
-    path: '/',
+    path: '/index.html',
     component: IndexPage,
   },
   {
     key: 'test',
     label: 'Test',
-    path: '/test',
+    path: '/test.html',
     component: TestPage,
   },
 ]

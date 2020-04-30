@@ -1,17 +1,19 @@
 import React, { useEffect } from 'react'
-import { HashRouter as Router, Switch, Route } from 'react-router-dom'
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect,
+} from 'react-router-dom'
 
 import router from '@config/router'
-import scriptList from '@config/scriptList'
 
 function App() {
   useEffect(() => {
-    scriptList.forEach((src) => {
-      const s = document.createElement('script')
-      s.src = src
+    const script = document.createElement('script')
+    script.src = 'app.js'
 
-      document.body.appendChild(s)
-    })
+    document.body.appendChild(script)
   }, [])
 
   return (
@@ -22,6 +24,9 @@ function App() {
             {route.component}
           </Route>
         ))}
+        <Route path="*">
+          <Redirect to="/index.html" />
+        </Route>
       </Switch>
     </Router>
   )
