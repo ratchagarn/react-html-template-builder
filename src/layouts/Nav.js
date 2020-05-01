@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import styled from '@emotion/styled'
 
 import router from '@config/router'
@@ -10,7 +10,9 @@ function Nav() {
       <ul>
         {router.map((route) => (
           <li key={route.key}>
-            <Link to={route.path}>{route.label}</Link>
+            <NavLink to={route.path} activeClassName="selected">
+              {route.label}
+            </NavLink>
           </li>
         ))}
       </ul>
@@ -36,6 +38,13 @@ const NavContent = styled.nav`
         &:hover {
           color: red;
           text-decoration: none;
+        }
+
+        &.selected {
+          color: orange;
+          font-weight: bold;
+          text-decoration: none;
+          pointer-events: none;
         }
       }
     }
