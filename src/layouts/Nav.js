@@ -27,13 +27,15 @@ const NavContent = styled.nav`
 
     > li {
       display: inline-block;
-      margin-right: 8px;
+      margin-right: 16px;
 
       > a {
         color: blue;
+        transition: 0.2s;
 
         &:hover {
           color: red;
+          text-decoration: none;
         }
       }
     }

@@ -1,5 +1,6 @@
 import IndexPage from '@pages/IndexPage'
 import TestPage from '@pages/TestPage'
+import CarouselPage from '@pages/CarouselPage'
 
 export default [
   {
@@ -13,5 +14,11 @@ export default [
     label: 'Test',
     path: '/test.html',
     component: TestPage,
+  },
+  {
+    key: 'carousel',
+    label: 'Carousel',
+    path: '/carousel.html',
+    component: CarouselPage,
   },
 ]
