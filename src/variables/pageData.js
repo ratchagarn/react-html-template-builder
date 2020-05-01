@@ -13,6 +13,6 @@ export default {
 
   carousel: {
     title: 'Carousel Page',
-    nameList: range(10).map((n) => faker.name.findName()),
+    getNameList: () => range(10).map((n) => faker.name.findName()),
   },
 }

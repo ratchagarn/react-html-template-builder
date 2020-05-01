@@ -4,19 +4,17 @@ import styled from '@emotion/styled'
 import Header from './Header'
 import Nav from './Nav'
 
-const injectScriptName = '__inject_script__'
-
 function LayoutDefault({ children }) {
   useEffect(() => {
-    const injectScript = document.getElementById(injectScriptName)
     const script = document.createElement('script')
-    script.id = injectScriptName
+    script.async = true
+    script.id = '__inject_app_script__'
     script.src = '/assets/app.js'
 
-    if (injectScript) {
-      injectScript.parentNode.replaceChild(script, injectScript)
-    } else {
-      document.body.appendChild(script)
+    document.body.appendChild(script)
+
+    return () => {
+      document.body.removeChild(script)
     }
   }, [])
 
